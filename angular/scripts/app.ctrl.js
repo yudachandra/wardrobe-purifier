@@ -20,8 +20,8 @@
         vm.isSmart = isSmart();
         // config
         vm.app = {
-          name: 'Flatkit',
-          version: '1.2.0',
+          name: 'Wardrobe Purifier',
+          version: '1.1.0',
           // for chart colors
           color: {
             'primary':      '#0cc2aa',
@@ -66,7 +66,7 @@
 
         vm.setTheme = setTheme;
         setColor();
-        
+
         function setTheme(theme){
           vm.app.setting.theme = theme.theme;
           setColor();
