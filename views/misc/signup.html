@@ -7,14 +7,22 @@
 
     <div class="p-a-md box-color r box-shadow-z1 text-color m-a">
       <div class="m-b text-sm">
-        Sign up to your {{app.name}} Account
+        Sign up to your {{app.name}} account
       </div>
       <form name="form">
         <div class="md-form-group">
           <input type="text" class="md-input" required>
-          <label>Name</label>
+          <label>Username</label>
         </div>
+          <div class="md-form-group">
+            <input type="text" class="md-input" required>
+            <label>Full Name</label>
+          </div>
         <div class="md-form-group">
+          <input type="text" class="md-input" required>
+          <label>Phone</label>
+        </div>
+      <div class="md-form-group">
           <input type="email" class="md-input" required>
           <label>Email</label>
         </div>
@@ -27,8 +35,6 @@
     </div>
 
     <div class="p-v-lg text-center">
-      <div>Already have an account? <a ui-sref="access.signin" href="signin.html" class="text-primary _600">Sign in</a></div>
+      <div>Already have an account? <a ui-sref="access.signin" href="signin.html" class="text-primary _600">Login</a></div>
     </div>
   </div>
-
-  <?php echo date('l, F jS, Y'); ?>.
