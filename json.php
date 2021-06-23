@@ -15,7 +15,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT id, suhu, kelembaban, debu FROM datasensor";
+$sql = "SELECT id, suhu, kelembaban, debu FROM data_sensor";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {

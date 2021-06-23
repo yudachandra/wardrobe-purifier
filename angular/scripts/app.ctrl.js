@@ -20,7 +20,7 @@
         vm.isSmart = isSmart();
         // config
         vm.app = {
-          name: 'Wardrobe Purifier',
+          name: 'Smart Clothes Warehouse',
           version: '1.1.0',
           // for chart colors
           color: {
