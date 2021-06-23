@@ -1,4 +1,4 @@
-// code style: https://github.com/johnpapa/angular-styleguide 
+// code style: https://github.com/johnpapa/angular-styleguide
 
 (function() {
     'use strict';
@@ -12,12 +12,18 @@
         vm.p_p_2 = [{data: 75, label: 'iPhone'}, {data: 20, label: 'iPad'}];
         vm.p_p_3 = [{data: 30, label: 'Server'}, {data: 70, label: 'Client'}];
         vm.p_p_4 = [{data: 10, label: 'Apple'}, {data: 15, label: 'Google'}, {data: 35, label: 'Flatty'}, {data: 45, label: 'Other'}];
-        
+
         vm.p_l_1 = [[1, 6.1], [2, 6.3], [3, 6.4], [4, 6.6], [5, 7.0], [6, 7.7], [7, 8.3]];
         vm.p_l_2 = [[1, 5.5], [2, 5.7], [3, 6.4], [4, 7.0], [5, 7.2], [6, 7.3], [7, 7.5]];
         vm.p_l_3 = [[1, 2], [2, 1.6], [3, 2.4], [4, 2.1], [5, 1.7], [6, 1.5], [7, 1.7]];
         vm.p_l_4 = [[1, 3], [2, 2.6], [3, 3.2], [4, 3], [5, 3.5], [6, 3], [7, 3.5]];
         vm.p_l_5 = [[1, 3.6], [2, 3.5], [3, 6], [4, 4], [5, 4.3], [6, 3.5], [7, 3.6]];
+        // vm.p_l_5 = JSON.parse('./angular/api/data_sensor.json');
+        // var data_sensor = JSON.parse('./angular/api/data_sensor.json')
+        // for(var i in data_sensor)
+        //   result.push([i,data[i]]);
+        //vm.p_l_5 =  $('#result').html(JSON.stringify(result));
+
         vm.p_l_6 = [[1, 10], [2, 8], [3, 27], [4, 25], [5, 50], [6, 30], [7, 25]];
 
         vm.p_b_1 = [[1, 2], [2, 4], [3, 5], [4, 7], [5, 6], [6, 4], [7, 5], [8, 4]];
@@ -47,7 +53,7 @@
             {latLng: [37.36, -122.03], name: 'Silicon Valley'}
           ];
 
-          vm.cityAreaData = [      
+          vm.cityAreaData = [
             605.16,
             310.69,
             405.17,
@@ -60,5 +66,5 @@
             325.42
           ]
       }
-      
+
 })();

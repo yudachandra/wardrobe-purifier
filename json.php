@@ -15,7 +15,12 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT id, suhu, kelembaban, debu FROM datasensor";
+$sql = "SELECT ROUND(AVG(suhu), 2) AS suhu,
+       ROUND(AVG(kelembaban), 2) AS kelembaban,
+       ROUND(AVG(debu), 2) AS debu,
+       CAST(created_at AS DATE) AS tanggal
+FROM data_sensor
+GROUP BY CAST(created_at AS DATE)";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -24,9 +29,11 @@ while($row=$result->fetch_assoc()){
     $suhu=$row['suhu'];
     $kelembaban=$row['kelembaban'];
     $debu=$row['debu'];
+    $tanggal=$row['tanggal'];
 
     //each item from the rows go in their respective vars and into the posts array
-    $posts[] = array('suhu'=> $suhu, 'kelembaban'=> $kelembaban, 'debu'=> $debu);
+    //$posts[] = array('suhu'=> $suhu, 'kelembaban'=> $kelembaban, 'debu'=> $debu, 'tanggal'=> $tanggal);
+    $posts[] = array($suhu, $tanggal);
   }
 } else {
   echo "0 results";
@@ -34,12 +41,14 @@ while($row=$result->fetch_assoc()){
 
 
 //the posts array goes into the response
-$response['posts'] = $posts;
+$response = $posts;
+//$response['posts'] = $posts;
 
 //creates the file
-$fp = fopen('results.json', 'w');
+$fp = fopen('./angular/api/data_sensor.json', 'w');
 fwrite($fp, json_encode($response));
 fclose($fp);
+
 echo json_encode($response);
 $conn->close();
 //
@@ -49,25 +58,6 @@ $conn->close();
 // 	or die ($mysqli->error);
 //
 //
-//
-// while($row=$result->fetch_assoc()) //mysql_fetch_array($sql)
-// {
-// $suhu=$row['suhu'];
-// $kelembaban=$row['kelembaban'];
-// $debu=$row['debu'];
-//
-// //each item from the rows go in their respective vars and into the posts array
-// $posts[] = array('suhu'=> $suhu, 'kelembaban'=> $kelembaban, 'debu'=> debu);
-//
-// }
-//
-// //the posts array goes into the response
-// $response['posts'] = $posts;
-//
-// //creates the file
-// $fp = fopen('results.json', 'w');
-// fwrite($fp, json_encode($response));
-// fclose($fp);
 //
 // /* Final Output
 // {"posts": [
