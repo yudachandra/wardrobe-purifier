@@ -6,6 +6,41 @@
       .module('app')
       .controller('ChartCtrl', Chart);
 
+      var data_sensor = (function() {
+      var data_sensor = null;
+      $.ajax({
+        'async': false,
+        'global': false,
+        'url': "./api/data_sensor.json",
+        'dataType': "json",
+        'success': function(data) {
+          data_sensor = data;
+          }
+        });
+        return data_sensor;
+      })();
+
+      // Converting JSON object to JS object
+      var data_suhu = ['tanggal', 'suhu'];
+      var data_kelembaban = ['tanggal', 'kelembaban'];
+      var data_debu = ['tanggal', 'debu'];
+
+      var result_suhu = data_sensor.map(function(obj) {
+        return data_suhu.map(function(key) {
+          return obj[key];
+        });
+      });
+      var result_kelembaban = data_sensor.map(function(obj) {
+        return data_kelembaban.map(function(key) {
+          return obj[key];
+        });
+      });
+      var result_debu = data_sensor.map(function(obj) {
+        return data_debu.map(function(key) {
+          return obj[key];
+        });
+      });
+
       function Chart($scope){
         var vm = $scope;
         vm.p_p_1 = [{data: 70, label: 'Server'}, {data: 30, label: 'Client'}];
@@ -17,17 +52,14 @@
         vm.p_l_2 = [[1, 5.5], [2, 5.7], [3, 6.4], [4, 7.0], [5, 7.2], [6, 7.3], [7, 7.5]];
         vm.p_l_3 = [[1, 2], [2, 1.6], [3, 2.4], [4, 2.1], [5, 1.7], [6, 1.5], [7, 1.7]];
         vm.p_l_4 = [[1, 3], [2, 2.6], [3, 3.2], [4, 3], [5, 3.5], [6, 3], [7, 3.5]];
-        vm.p_l_5 = [[1, 3.6], [2, 3.5], [3, 6], [4, 4], [5, 4.3], [6, 3.5], [7, 3.6]];
-        // vm.p_l_5 = JSON.parse('./angular/api/data_sensor.json');
-        // var data_sensor = JSON.parse('./angular/api/data_sensor.json')
-        // for(var i in data_sensor)
-        //   result.push([i,data[i]]);
-        //vm.p_l_5 =  $('#result').html(JSON.stringify(result));
-
+        // vm.p_l_5 = [[1, 3.6], [2, 3.5], [3, 6], [4, 4], [5, 4.3], [6, 3.5], [7, 3.6]];
+        vm.p_l_5 = result_suhu;
         vm.p_l_6 = [[1, 10], [2, 8], [3, 27], [4, 25], [5, 50], [6, 30], [7, 25]];
 
-        vm.p_b_1 = [[1, 2], [2, 4], [3, 5], [4, 7], [5, 6], [6, 4], [7, 5], [8, 4]];
-        vm.p_b_2 = [[3, 1], [2, 2], [6, 3], [5, 4], [7, 5]];
+        // vm.p_b_1 = [[1, 2], [2, 4], [3, 5], [4, 7], [5, 6], [6, 4], [7, 5], [8, 4]];
+        vm.p_b_1 = result_kelembaban;
+        // vm.p_b_2 = [[3, 1], [2, 2], [6, 3], [5, 4], [7, 5]];
+        vm.p_b_2 = result_debu;
         vm.p_b_3 = [[1, 3], [2, 4], [3, 3], [4, 6], [5, 5], [6, 4], [7, 5], [8, 3]];
         vm.p_b_4 = [[1, 2], [2, 3], [3, 2], [4, 5], [5, 4], [6, 3], [7, 4], [8, 2]];
 

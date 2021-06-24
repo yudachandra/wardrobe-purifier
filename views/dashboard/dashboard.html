@@ -1,3 +1,24 @@
+<script>
+	var data_sensor_latest = (function() {
+	var data_sensor_latest = null;
+	$.ajax({
+		'async': false,
+		'global': false,
+		'url': "./api/data_sensor_latest.json",
+		'dataType': "json",
+		'success': function(data) {
+			data_sensor_latest = data;
+			}
+		});
+		return data_sensor_latest;
+	})();
+
+  document.getElementById("nilai_suhu").innerHTML = data_sensor_latest[0].latest_suhu;
+	  document.getElementById("nilai_kelembaban").innerHTML = data_sensor_latest[0].latest_kelembaban;
+		  document.getElementById("nilai_debu").innerHTML = data_sensor_latest[0].latest_debu;
+			  document.getElementById("data_terakhir_tanggal").innerHTML = data_sensor_latest[0].latest_tanggal;
+
+</script>
 <div class="p-a white lt box-shadow">
 	<div class="row">
 		<div class="col-sm-6">
@@ -22,12 +43,12 @@
             </div> -->
             <div class="row" id="sensor_online" style="">
               <div class="col-lg-12 col-md-12 box wow fadeInLeft" style="visibility: visible; animation-name: fadeInLeft;">
-                <p class="description">Data from sensors at <span id="datetime">2021-21-06 09:37:50</span></p>
+                <p class="description">Data from sensors at <span id="data_terakhir_tanggal"></span></p>
               </div>
               <div class="col-lg-4 col-md-6 box wow fadeInRight" style="visibility: visible; animation-name: fadeInRight;">
                 <div class="icon">
                     <i class="ion-thermometer"></i>
-                    <h2><span id="nilai_suhu">0.00</span><sup> o</sup>C</h2>
+                    <h2><span id="nilai_suhu"></span><sup> o</sup>C</h2>
                 </div>
                 <h4 class="title"><a href="">Temperature</a></h4>
                 <p class="description"></p>
@@ -35,7 +56,7 @@
               <div class="col-lg-4 col-md-6 box wow fadeInRight" data-wow-delay="0.1s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInRight;">
                 <div class="icon">
                     <i class="ion-ios-snowy"></i>
-                    <h2><span id="nilai_kelembaban">0.00</span> %</h2>
+                    <h2><span id="nilai_kelembaban"></span> %</h2>
                 </div>
                 <h4 class="title"><a href="">Humidity</a></h4>
                 <p class="description"></p>
@@ -43,7 +64,7 @@
 							<div class="col-lg-4 col-md-6 box wow fadeInRight" data-wow-delay="0.1s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInRight;">
 								<div class="icon">
 										<i class="ion-ios-snowy"></i>
-										<h2><span id="nilai_kelembaban">0.00</span></h2>
+										<h2><span id="nilai_debu"></span></h2>
 								</div>
 								<h4 class="title"><a href="">Dust Level</a></h4>
 								<p class="description"></p>
@@ -115,7 +136,7 @@
 	                yaxis:{ show: true, font: { color: '#ccc' }},
 	                grid: { hoverable: true, clickable: true, borderWidth: 0, color: 'rgba(120,120,120,0.5)' },
 	                tooltip: true,
-	                tooltipOpts: { content: '%x.0 is %y.4',  defaultTheme: false, shifts: { x: 0, y: -40 } }
+	                tooltipOpts: { content: 'Tanggal %x Suhu Rerata %y',  defaultTheme: false, shifts: { x: 0, y: -40 } }
 	              }
 	            " style="height:188px" >
 	            </div>
@@ -171,7 +192,7 @@
 	                yaxis:{ show: true, font: { color: '#ccc' }},
 	                grid: { hoverable: true, clickable: true, borderWidth: 0, color: 'rgba(120,120,120,0.5)' },
 	                tooltip: true,
-	                tooltipOpts: { content: '%x.0 is %y.4',  defaultTheme: false, shifts: { x: 0, y: -40 } }
+	                tooltipOpts: { content: 'Tanggal %x Kelembaban Rerata %y',  defaultTheme: false, shifts: { x: 0, y: -40 } }
 	              }
 	            " style="height:188px" >
 	            </div>
@@ -227,7 +248,7 @@
 	                yaxis:{ show: true, font: { color: '#ccc' }},
 	                grid: { hoverable: true, clickable: true, borderWidth: 0, color: 'rgba(120,120,120,0.5)' },
 	                tooltip: true,
-	                tooltipOpts: { content: '%x.0 is %y.4',  defaultTheme: false, shifts: { x: 0, y: -40 } }
+	                tooltipOpts: { content: 'Tanggal %x Density Debu Rerata %y',  defaultTheme: false, shifts: { x: 0, y: -40 } }
 	              }
 	            " style="height:188px" >
 	            </div>
